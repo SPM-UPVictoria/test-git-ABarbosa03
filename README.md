@@ -14,7 +14,7 @@ MATERIA: MANTENIMIENTO A EQUIPO DE COMPUTO
 
 ## **LISTA DE EJERCICIOS** 
 <br>
-### 1.- **[Codigo 5](Codigo_5.sh)**
+### 1.- **[Codigo 5]**(Codigo_5.sh)
 <br>
 ### 2.- **[Codigo 6](Codigo_6.sh)**
 <br>
