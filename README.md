@@ -12,7 +12,7 @@ MATERIA: MANTENIMIENTO A EQUIPO DE COMPUTO
 <br>
 
 
-## **LISTA DE EJERCICIOS** 
+## **Codigos Elaborados** 
 <br>
 ### 1.- **[Codigo 5]** (Codigo_5.md)
 <br>
