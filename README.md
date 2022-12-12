@@ -14,11 +14,11 @@ MATERIA: MANTENIMIENTO A EQUIPO DE COMPUTO
 
 ## **LISTA DE EJERCICIOS** 
 <br>
-### 1.- **[Codigo 5](Codigo_5.sh)**
+### 1.- **[Codigo 5](Codigo_5.md)**
 <br>
-### 2.- **[Codigo 6](Codigo_6.sh)**
+### 2.- **[Codigo 6](Codigo_6.md)**
 <br>
-### 3.- **[Codigo 8](Codigo_8.sh)**
+### 3.- **[Codigo 8](Codigo_8.md)**
 <br>
 ### 4.- **[Codigo 11](Codigo_11.sh)**
 <br>
