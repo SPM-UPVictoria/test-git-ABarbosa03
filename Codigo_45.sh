@@ -1,41 +1,29 @@
 #!/bin/bash
 
-if [ $# -eq 0 ]; then
-  echo "Usage: $(basename $0) amount currency to currency"
-  echo "Most common currencies are CAD, CNY, EUR, USD, INR, JPY, and MXN"
-  echo "Use \"$(basename $0) list\" for the full list of supported currencies"
-fi
+. /home/haydo/Escritorio/CodigosMantenimiento/library.sh
 
-if [ $(uname) = "Darwin" ]; then
-  LANG=C 
-fi
-
-url="https://www.google.com/finance/converter"
-tempfile="/tmp/converter.$$"
-lynx=$(which lynx)
-
-currencies=$($lynx -source "$url" | grep "option  value=" | \
-    cut -d\" -f2- | sed 's/">/ /' | cut -d\( -f1 | sort | uniq)
-
-if [ $# -ne 4 ] ; then
-  if [ "$1" = "list" ] ; then
-    echo "List of supported currencies:"
-    echo "$currencies"
+askvalue()
+{
+  echon "$1 [$2] : "
+  read answer
+  if [ ${answer:=$2} -gt $3 ] ; then
+    echo "$0: $1 $answer is invalid"; exit 0
+  elif [ "$(( $(echo $answer | wc -c) - 1 ))" -lt $4 ] ; then
+    echo "$0: $1 $answer is too short: please specify $4 digits"; exit 0
   fi
-  exit 0
-fi
+  eval $1=$answer  
+}
 
-if [ $3 != "to" ] ; then
-  echo "Usage: $(basename $0) value currency TO currency"
-  echo "(use \"$(basename $0) list\" to get a list of all currency values)"
-  exit 0
-fi
+eval $(date "+nyear=%Y nmon=%m nday=%d nhr=%H nmin=%M")
 
-amount=$1
-basecurrency="$(echo $2 | tr '[:lower:]' '[:upper:]')"
-targetcurrency="$(echo $4 | tr '[:lower:]' '[:upper:]')"
+askvalue year $nyear 3000 4
+askvalue month $nmon 12 2
+askvalue day $nday 31 2
+askvalue hour $nhr 24 2
+askvalue minute $nmin 59 2
 
-$lynx -source "$url?a=$amount&from=$basecurrency&to=$targetcurrency" | \
-  grep 'id=currency_converter_result' | sed 's/<[^>]*>//g'
+squished="$month$day$hour$minute$year"
+echo "Setting date to $squished. You might need to enter your sudo password:"
+sudo date $squished
 
 exit 0
